@@ -7,6 +7,7 @@ public class hikakin : MonoBehaviour
     public float speed = 4f;
     private float playerSpeed;
     Rigidbody2D rigidbody2D;
+    public float jumpPower;
 
     // Start is called before the first frame update
     void Start()
@@ -26,5 +27,15 @@ public class hikakin : MonoBehaviour
         else playerSpeed = 0;
 
         rigidbody2D.velocity = new Vector2(playerSpeed, rigidbody2D.velocity.y);
+
+        float moveX = Input.GetAxis("Horizontal");
+
+        Vector2 movement = new Vector2(moveX, 0);
+        rigidbody2D.AddForce(movement * speed);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rigidbody2D.velocity = Vector2.up * jumpPower;
+        }
     }
 }

@@ -1974,6 +1974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  jumpPower: 7
 --- !u!1 &942020041
 GameObject:
   m_ObjectHideFlags: 0
