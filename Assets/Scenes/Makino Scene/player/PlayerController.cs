@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     float jumpForce = 400.0f;
     float walkForce = 30.0f;
-    float maxWalkSpeed = 2.0f;
+    float maxWalkSpeed = 4.0f;
+    private Vector3 initialPosition;
+    private Vector3 currentPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
         Application.targetFrameRate = 60;
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
+        initialPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -58,6 +61,22 @@ public class PlayerController : MonoBehaviour
         {
             this.animator.speed = 1.0f;
         }
-        
+
+        currentPosition = transform.position;
+
+        if (currentPosition.y < -7f)
+        {
+            // ‰ŠúˆÊ’u‚É–ß‚·B
+            transform.position = initialPosition;
+        }
+
+        }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "toge")
+        {
+            transform.position = initialPosition;
+        }
     }
 }
