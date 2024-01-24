@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - toge
+  - goal
+  - renga
+  - ground
   layers:
   - Default
   - TransparentFX

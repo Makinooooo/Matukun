@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     float maxWalkSpeed = 4.0f;
     private Vector3 initialPosition;
     private Vector3 currentPosition;
+    bool Offjamp = false;
 
     // Start is called before the first frame update
     void Start()
@@ -24,13 +25,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ジャンプ
-        if (Input.GetKeyDown(KeyCode.Space) &&
-            this.rigid2D.velocity.y == 0)
-        {
-            this.animator.SetTrigger("JumpTrigger");
-            this.rigid2D.AddForce(transform.up * this.jumpForce);
-        }
+         if (Input.GetKeyDown(KeyCode.Space) &&
+         this.rigid2D.velocity.y == 0)
+         {
+                this.animator.SetTrigger("JumpTrigger");
+                this.rigid2D.AddForce(transform.up * this.jumpForce);
+         }
 
         // 左右移動
         int key = 0;
@@ -70,7 +70,17 @@ public class PlayerController : MonoBehaviour
             transform.position = initialPosition;
         }
 
+        //ジャンプゼロ
+        if(Offjamp==true)
+        {
+            jumpForce = 0.0f;
         }
+        else
+        {
+            jumpForce = 400.0f;
+        }
+
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -78,5 +88,18 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = initialPosition;
         }
+
+        //レンガ
+        if (collision.gameObject.tag == "renga")
+        {
+            Offjamp = true;
+        }
+
+        //グラウンド
+        if(collision.gameObject.tag == "ground")
+        {
+            Offjamp = false;
+        }
+
     }
 }
