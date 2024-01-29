@@ -16,7 +16,7 @@ public class togeKing : MonoBehaviour
     {
         if(checkDown == 0)
         {
-            transform.position += new Vector3(0.0f, -0.01f, 0f);
+            transform.position += new Vector3(0.0f, -0.05f, 0f);
         }
 
         if(transform.position.y < 0.5)
@@ -26,7 +26,7 @@ public class togeKing : MonoBehaviour
 
         if(checkDown ==1)
         {
-            transform.position += new Vector3(0.0f, +0.01f, 0f);
+            transform.position += new Vector3(0.0f, +0.05f, 0f);
         }
 
         if (transform.position.y > 5.1)
